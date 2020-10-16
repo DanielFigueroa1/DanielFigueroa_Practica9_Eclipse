@@ -53,7 +53,7 @@ public class Main extends PApplet implements OnMessageListener {
 		Gson gson = new Gson();
 		Orden datosOrden = gson.fromJson(orden, Orden.class);
 
-		orden.add (new Orden(datosOrden.getImagenPedido(),datosOrden.getNumeroPedido(),datosOrden.getHoraPedido()));
+		/*orden es la variable global*/this.orden.add (new Orden(datosOrden.getImagenPedido(),datosOrden.getNumeroPedido(),datosOrden.getHoraPedido())); //orden tipo string
 	}
 	
 }
