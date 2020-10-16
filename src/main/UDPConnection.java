@@ -24,22 +24,20 @@ public class UDPConnection extends Thread{
 	public void run() {
 		try {
 			//1 Escuchar
-		socket = new DatagramSocket(5000);
+		socket = new DatagramSocket(6000);
 		
 		//esperar mensajes: datagramas
 		
 		
 		while (true) {
 			//2 Parametros Constructor
-			byte[] buffer = new byte [100];
+			byte[] buffer = new byte [200];
 			DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
 			System.out.println("Esperando datagrama");
 			socket.receive(packet);
-			
+			System.out.println(packet);
 			String mensaje = new String(packet.getData()).trim();
-			
-			
-			
+			observer.recibirOrden(mensaje);// esto manda el mensaje al main
 			
 			System.out.println("orden recibida" + mensaje); //
 			
@@ -61,7 +59,7 @@ public class UDPConnection extends Thread{
 		try {
 			//parametros datagrama de envio
 			InetAddress ip = InetAddress.getByName("127.0.0.1");
-			DatagramPacket packet = new DatagramPacket(mensaje.getBytes(), mensaje.getBytes().length, ip, 6000); //dec con el que me comunico el 6000 es el puerto
+			DatagramPacket packet = new DatagramPacket(mensaje.getBytes(), mensaje.getBytes().length, ip, 5000); //dec con el que me comunico el 6000 es el puerto
 			socket.send(packet);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block

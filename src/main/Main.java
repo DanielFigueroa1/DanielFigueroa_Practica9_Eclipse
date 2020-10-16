@@ -40,16 +40,19 @@ public class Main extends PApplet implements OnMessageListener {
 	}
 	
 	public void draw() {
-		background(0);
+		background(180);
 	
 		for(int i=0 ; i<orden.size() ; i++) {
 			Orden datosOrden = orden.get(i);
+			orden.get(i).paint(60,50*i+60); //distancia entre cada orden
+			
 		}
 	}
 
 	@Override
-	public void recibirOrden(String orden) { //porque recibe una linea json seria String orden
+	public void recibirOrden(String orden) { //porque recibe una linea json seria String orden, agrega un elemento arraylist
 		// TODO Auto-generated method stub
+		
 		Gson gson = new Gson();
 		Orden datosOrden = gson.fromJson(orden, Orden.class);
 
